@@ -25,3 +25,8 @@ This project contains four directories.
     3) double click on the run.sh file
     4) program will print "Processing has finished. Please check the output directory for the finished file." when it has finished
     5) check the output directory for results
+
+python -m venv python-matrix  
+source python-matrix/bin/activate
+py2applet --make-setup matrix-converter.py
+python setup.py py2app -A   
