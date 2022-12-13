@@ -1,6 +1,6 @@
 import sys
 import tkinter as tk
-from tkinter import filedialog, Label, StringVar
+from tkinter import filedialog, Label, PhotoImage
 import pandas as pd
 import time
 import os
@@ -10,6 +10,8 @@ import shutil
 window = tk.Tk()
 BasePath = 'No/Path/Selected'
 window.title('Matrix Converter')
+AppIcon = PhotoImage(file = 'matrix.png')
+window.iconphoto(False, AppIcon)
 
 def getExValues(input_array, numberOfExRows):
     returnArray = []
@@ -74,6 +76,7 @@ def runFileConvert(BasePath):
     fileIndex = 0
     print()
     for file in filenames:
+        NewFileName = file.split('.csv')[0] + '-corrected'
         setUserFeedback('Loading file: ' + file + '... ')
         # print('Loading file: ' + file + '... ')
         fileIndex = fileIndex + 1
@@ -112,7 +115,7 @@ def runFileConvert(BasePath):
             OutputMatrix.append(CurrentContentArray)
 
         df = pd.DataFrame(OutputMatrix).T
-        df.to_excel(excel_writer = BasePath + "/output/" + timestr + '-' + str(fileIndex) +".xlsx", index=False, header=False)
+        df.to_excel(excel_writer = BasePath + "/output/" + NewFileName +".xlsx", index=False, header=False)
         # print(file + ' complete!')
         setUserFeedback(file + ' complete!')
         shutil.copy(excelInputFile, BasePath + '/archive')

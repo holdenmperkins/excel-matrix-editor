@@ -1,1 +1,0 @@
-python /path/to/project/main.py /path/to/project/
